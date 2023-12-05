@@ -5,7 +5,8 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import indexRouter from "./routes/index.route.js";
-import usersRouter from "./routes/users.route.js";
+import usersRouter from "./routes/user.route.js";
+import postsRouter from "./routes/posts.route.js";
 import mongoose from "mongoose";
 
 const app = express();
@@ -47,6 +48,7 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

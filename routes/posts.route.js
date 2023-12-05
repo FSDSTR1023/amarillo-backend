@@ -1,9 +1,9 @@
 import { Router } from "express";
 var router = Router();
 
-/* GET users listing. */
+/* GET posts listing. */
 router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+  res.send("respond with a post");
 });
 
 export default router;
