@@ -13,5 +13,3 @@
 6. yarn add dotenv
 7. nodemon app.js
 
-username: tonifcb
-pw: GeNL6wlPZApzpFC0
