@@ -1,12 +1,16 @@
 import { Router } from "express";
 var router = Router();
 
-import { createUser } from "../controllers/userController.js";
+import {
+  createUser,
+  getUsers,
+  getUserById,
+} from "../controllers/userController.js";
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a user");
-});
+router.get("/", getUsers);
+
+router.get("/:id", getUserById);
 
 router.post("/create", createUser);
 
