@@ -14,4 +14,6 @@ router.get("/:id", getUserById);
 
 router.post("/create", createUser);
 
+router.post('/login', userController.loginUser); //agrego ruta de login de usuario 
+
 export default router;
