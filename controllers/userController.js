@@ -33,4 +33,23 @@ async function getUserById(req, res) {
     });
 }
 
-export { createUser, getUsers, getUserById };
+// Agrego la funcion de login de usuario 
+
+async function loginUser(req, res) {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
+      }
+      if (!req.body.password || user.password !== req.body.password) {
+        return res.status(403).json({ msg: 'Forbidden' });
+      }
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      console.log(err, ' <---- error try again something went wrong');
+      res.status(400).json(err);
+    });
+}
+
+export { createUser, getUsers, getUserById, loginUser };
