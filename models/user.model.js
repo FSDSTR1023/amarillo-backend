@@ -6,16 +6,41 @@ const Schema = _Schema;
 // Schema defines the STRUCTURE of documents in the collection
 // this is the BLUEPRINT for all instances
 const userSchema = new Schema({
-  first_name: String,
-  last_name: String,
-  handle: String,
-  email: String,
-  //   password: {
-  //     type: String,
-  //     required: true,
-  //     select: false, // Hide password by default when querying
-  //     // set: (password) => hashSync(password, 10) // Use bcrypt to hash passwords
-  //   },
+  first_name: {
+    type: String,
+    required: true,
+    trim: true,
+    minlenght: 1,
+    maxlenght: 25,
+  },
+  last_name: {
+    type: String,
+    required: true,
+    trim: true,
+    minlenght: 1,
+    maxlenght: 25,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+    minlenght: 3,
+    maxlenght: 25,
+  },
+  password: {
+    type: String,
+    required: true,
+    select: false, // Hide password by default when querying
+    trim: true,
+    minlenght: 3,
+    maxlenght: 25,
+  },
+  handle: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
   // image: String, // might store an image URL or reference to an image
   //   posts: [Schema.Types.ObjectId], // Assuming posts are referenced by ObjectId
