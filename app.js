@@ -6,7 +6,7 @@ import logger from "morgan";
 
 import indexRouter from "./routes/index.route.js";
 import usersRouter from "./routes/user.route.js";
-import postsRouter from "./routes/posts.route.js";
+import postsRouter from "./routes/post.route.js";
 import mongoose from "mongoose";
 
 const app = express();
