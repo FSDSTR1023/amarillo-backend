@@ -10,31 +10,31 @@ const userSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    minlenght: 1,
-    maxlenght: 25,
+    minLength: 2,
+    maxLength: 40,
   },
   last_name: {
     type: String,
     required: true,
     trim: true,
-    minlenght: 1,
-    maxlenght: 25,
+    minLength: 2,
+    maxLength: 40,
   },
   email: {
     type: String,
     unique: true,
     required: true,
     trim: true,
-    minlenght: 3,
-    maxlenght: 25,
+    minLength: 3,
+    maxLength: 40,
   },
   password: {
     type: String,
     required: true,
     select: false, // Hide password by default when querying
     trim: true,
-    minlenght: 3,
-    maxlenght: 25,
+    minLength: 3,
+    maxLength: 40,
   },
   handle: {
     type: String,
@@ -50,20 +50,6 @@ const userSchema = new Schema({
   //   following: [Schema.Types.ObjectId],
   createdAt: { type: Date, default: Date.now },
   deletedAt: { type: Date, default: null },
-});
-
-// Hash the password before saving to the database so there isn't a security issue
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    return next();
-  }
-  try {
-    const hashedPassword = await bcrypt.hash(this.password, 10);
-    this.password = hashedPassword;
-    return next();
-  } catch (err) {
-    return next(err);
-  }
 });
 
 // User is our mongoose model class

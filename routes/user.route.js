@@ -13,7 +13,7 @@ router.get("/", getUsers);
 
 router.get("/:id", getUserById);
 
-router.post("/create", createUser);
+router.post("/", createUser);
 
 // TODO - add functions for these routes
 router.post("/login" /*logInUser function*/);
