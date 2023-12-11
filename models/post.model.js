@@ -15,13 +15,31 @@ const postSchema = new Schema({
     maxlenght: 400,
   },
   // image: String, // might store an image URL or reference to an image
-  //   comments: [Schema.Types.ObjectId],
-  //   likes: [Schema.Types.ObjectId],
+  likes: {
+    type: Number,
+    default: 0,
+    likedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User", // reference to the User model
+      required: true,
+    },
+  },
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "User", // reference to the User model
     required: true,
   },
+
+  comments: [
+    {
+      msg: String,
+      createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User", // reference to the User model
+        required: true,
+      },
+    },
+  ],
   createdAt: { type: Date, default: Date.now },
   deletedAt: { type: Date, default: null },
 });

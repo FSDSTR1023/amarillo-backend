@@ -33,4 +33,4 @@ async function getPostById(req, res) {
     });
 }
 
-export { createPost, getPosts };
+export { createPost, getPosts, getPostById };
