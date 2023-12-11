@@ -43,7 +43,7 @@ const userSchema = new Schema({
   },
 
   // image: String, // might store an image URL or reference to an image
-  posts: [Schema.Types.ObjectId], // Assuming posts are referenced by ObjectId
+  posts: [Schema.Types.ObjectId],
   followers: [Schema.Types.ObjectId],
   following: [Schema.Types.ObjectId],
   createdAt: { type: Date, default: Date.now },
