@@ -4,11 +4,21 @@ import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
-import indexRouter from "./routes/index.route.js";
 import usersRouter from "./routes/user.route.js";
 import postsRouter from "./routes/post.route.js";
 import mongoose from "mongoose";
 
+// const express = require('express')
+// const app = express()
+// const port = 3000
+
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
 const app = express();
 const port = 3000;
 
@@ -27,6 +37,7 @@ const mongoDB =
   "/" +
   process.env.DB_NAME +
   "?retryWrites=true&w=majority";
+
 async function main() {
   await mongoose.connect(mongoDB);
 }
@@ -48,7 +59,6 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
