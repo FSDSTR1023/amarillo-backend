@@ -18,12 +18,13 @@ const postSchema = new Schema({
   likes: {
     type: Number,
     default: 0,
-    likedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User", // reference to the User model
-      required: true,
-    },
   },
+  likedBy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "User", // reference to the User model

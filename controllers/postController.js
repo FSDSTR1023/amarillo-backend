@@ -1,13 +1,29 @@
 import Post from "../models/post.model.js";
+import User from "../models/user.model.js";
 
 async function createPost(req, res) {
-  Post.create(req.body)
-    .then((postDocs) => console.log(`post create worked well: ${postDocs}`))
-    .catch((error) => {
-      console.log(`Creating a new post went wrong! Try again 😞 ${error}`);
-      res.status(400).json(error);
-    });
-  res.send("finished");
+  try {
+    // Create the post
+    const newPost = await Post.create(req.body);
+
+    // Find the user who created the post and update their posts array
+    const updatedUser = await User.findByIdAndUpdate(
+      req.body.createdBy,
+      { $push: { posts: newPost._id } }, // Push the newly created post's ID to the user's posts array
+      { new: true }
+    );
+
+    // If the user is not found or other issues arise during the update, handle it
+    if (!updatedUser) {
+      throw new Error("User not found or unable to update user's posts array.");
+    }
+
+    console.log(`Post created and linked to user successfully.`);
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error(`Error creating post: ${error}`);
+    res.status(400).json({ error: "Failed to create post." });
+  }
 }
 
 async function getPosts(req, res) {
