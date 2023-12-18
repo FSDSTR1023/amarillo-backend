@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 
 async function createUser(req, res) {
+  // get user email if err -> throw err else, User.create
   User.create(req.body)
     .then((userDoc) => console.log(`user create worked well: ${userDoc}`))
     .catch((error) => {
@@ -82,4 +83,30 @@ async function getUserById(req, res) {
     });
 }
 
-export { createUser, getUsers, getUserById, loginUser, deleteUser, updateUser };
+async function checkEmail(req, res) {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+
+    if (user) {
+      // Email already exists in the database
+      res.status(200).json({ exists: true });
+    } else {
+      // Email doesn't exist in the database
+      res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    console.error("Error checking email:", error);
+    res.status(500).json({ error: "Error checking email" });
+  }
+}
+
+export {
+  createUser,
+  getUsers,
+  getUserById,
+  loginUser,
+  deleteUser,
+  updateUser,
+  checkEmail,
+};

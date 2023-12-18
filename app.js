@@ -7,19 +7,13 @@ import logger from "morgan";
 import usersRouter from "./routes/user.route.js";
 import postsRouter from "./routes/post.route.js";
 import mongoose from "mongoose";
+import cors from "cors";
 
-// const express = require('express')
-// const app = express()
-// const port = 3000
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
 const app = express();
+
+// Use the cors middleware so that the front-end can make calls
+app.use(cors());
+
 const port = 3000;
 
 app.use(express.json());

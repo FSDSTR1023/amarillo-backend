@@ -8,6 +8,7 @@ import {
   loginUser,
   deleteUser,
   updateUser,
+  checkEmail,
 } from "../controllers/userController.js";
 
 /* GET users listing. */
@@ -21,6 +22,8 @@ router.delete("/:id", deleteUser);
 router.post("/", createUser);
 
 router.post("/login", loginUser);
+
+router.post("/:email", checkEmail);
 
 // TODO - add functions for these routes
 

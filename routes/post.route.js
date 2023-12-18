@@ -5,6 +5,8 @@ import {
   getPosts,
   createPost,
   getPostById,
+  deletePost,
+  updatePost,
 } from "../controllers/postController.js";
 
 // TODO - add functions for these routes
@@ -15,11 +17,9 @@ router.get("/:id", getPostById);
 
 router.post("/", createPost);
 
-// router.delete("/:id", deletePost);
+router.delete("/:id", deletePost);
 
-// router.post("/like", likePost);
-
-router.patch("/logout" /*updatePost (e.g. likes, comments) function*/);
+router.put("/:id", updatePost);
 
 router.put("/user/update" /*editPost (content of post) function*/);
 
